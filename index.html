@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="todo">
+    <header class="todo__header">
+      <h1>My To-Do List</h1>
+      <p class="stats" id="stats" aria-live="polite">0 tasks · 0 completed</p>
+    </header>
+
+    <!-- Add task form -->
+    <form class="add-form" id="add-form" novalidate>
+      <label for="task-input" class="sr-only">New task</label>
+      <input
+        type="text"
+        id="task-input"
+        placeholder="What do you need to do?"
+        maxlength="120"
+        autocomplete="off"
+      />
+      <button type="submit" class="btn btn--primary">Add Task</button>
+    </form>
+    <p class="error" id="error" role="alert" hidden>Please enter a task before adding.</p>
+
+    <!-- Task list -->
+    <ul class="task-list" id="task-list" aria-label="Task list"></ul>
+
+    <!-- Empty state -->
+    <p class="empty" id="empty">No tasks yet. Add your first task!</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

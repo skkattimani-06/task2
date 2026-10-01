@@ -1,0 +1,169 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --text: #1f2a37;
+  --muted: #6b7788;
+  --border: #dde3ec;
+  --primary: #3b6cf6;
+  --primary-dark: #2a55d4;
+  --danger: #e5484d;
+  --danger-bg: #fdecec;
+  --success: #2f9e6b;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 16px;
+}
+
+/* Visually hidden, but available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Container ---------- */
+.todo {
+  width: 100%;
+  max-width: 560px;
+  background: var(--card);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(31, 42, 55, 0.1);
+}
+
+.todo__header { margin-bottom: 24px; }
+.todo__header h1 { font-size: 1.9rem; font-weight: 700; }
+.stats { margin-top: 6px; color: var(--muted); font-size: 0.92rem; }
+
+/* ---------- Add form ---------- */
+.add-form { display: flex; gap: 10px; }
+
+.add-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.add-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 108, 246, 0.15);
+}
+.add-form input.invalid { border-color: var(--danger); }
+
+.error { margin-top: 8px; color: var(--danger); font-size: 0.85rem; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn:active { transform: scale(0.97); }
+.btn:focus-visible { outline: 3px solid rgba(59, 108, 246, 0.4); outline-offset: 2px; }
+
+.btn--primary { background: var(--primary); color: #fff; }
+.btn--primary:hover { background: var(--primary-dark); }
+
+.btn--edit { background: #eaf0ff; color: var(--primary); padding: 7px 12px; }
+.btn--edit:hover { background: #d9e4ff; }
+
+.btn--delete { background: var(--danger-bg); color: var(--danger); padding: 7px 12px; }
+.btn--delete:hover { background: #fbd9da; }
+
+.btn--save { background: var(--success); color: #fff; padding: 7px 12px; }
+.btn--save:hover { background: #26805a; }
+
+/* ---------- Task list ---------- */
+.task-list { list-style: none; margin-top: 22px; display: grid; gap: 10px; }
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fafbfd;
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.task:hover { background: #f2f6ff; border-color: #c8d6f8; }
+
+.task input[type="checkbox"] {
+  width: 20px; height: 20px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.task__title {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+  transition: opacity 0.2s;
+}
+
+/* Completed tasks */
+.task.completed { opacity: 0.6; }
+.task.completed .task__title { text-decoration: line-through; color: var(--muted); }
+
+/* Inline edit input */
+.task__edit {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 10px;
+  font-size: 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  outline: none;
+}
+
+.task__actions { display: flex; gap: 6px; }
+
+/* ---------- Empty state ---------- */
+.empty {
+  margin-top: 22px;
+  text-align: center;
+  color: var(--muted);
+  padding: 28px 12px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+[hidden] { display: none !important; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  body { padding: 20px 10px; }
+  .todo { padding: 22px 16px; }
+  .todo__header h1 { font-size: 1.5rem; }
+  .add-form { flex-direction: column; }
+  .task { flex-wrap: wrap; }
+  .task__actions { width: 100%; justify-content: flex-end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
